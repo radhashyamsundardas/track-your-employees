@@ -5,6 +5,7 @@ const consoleTab = require ('console.table');
 const { default: Choices } = require('inquirer/lib/objects/choices');
 const { Action } = require('rxjs/internal/scheduler/Action');
 const { allowedNodeEnvironmentFlags, exit } = require('process');
+const { type } = require('os');
 
 // connecting to sql database.
 const connection = mysql2.createConnection({
@@ -31,9 +32,8 @@ function choose(){
             'view all employees',
             'view all roles',
             'add employee',
-            'add manager',
             'add role',
-            'add employee role',
+            'add department',
             'update employee',
             'delete employee',
             'EXIT'
@@ -53,14 +53,11 @@ function choose(){
             case 'add employee':
                 addEmp();
                 break
-            case 'add manager':
-                addManager();
-                break
             case 'add role':
                 addRole();
                 break
-            case 'add employee role':
-                addEmployeeRole();
+            case 'add department':
+                addDept();
                 break
             case 'update employee':
                 updateEmployee();
@@ -101,6 +98,7 @@ function choose(){
         })
     };
 
+
     function addEmp(){
         connection.query = 'SELECT * FROM role', function(err,res){
             if (err) throw err;
@@ -125,33 +123,86 @@ function choose(){
                     name: 'role',
                     type: 'list',
                     choices: function(){
-                        const erray =[];
+                        var erray =[];
                         for (var a = 0; a < res.length; a++ ){
-                            if (res[a].title === answer.role){
-                                role_id = res[a].id;
-                                console.log(role_id);
-                            }
+                            erray.push(res[i].title);
                         }
-                        connection.query{
-                            'INSERT INTO employee SET?',
-                            {}
-                        }
+                        return erray;
+                    },
+                    message: 'please enter employee role'
+                }
+            ]).then (function (answer){
+                let role_id;
+                for (var i = 0; a< res.length; a++){
+                    if (res[i].title === answer.role){
+                        role_id = res[i].id;
+                        console.log (role_id)
                     }
                 }
+                connection.query(
+                    'INSERT INTO employee SET ?',
+                    {
+                        first_name: answer.first_name,
+                        last_name : answer.last_name,
+                        manager_id: answer.manager_id,
+                        role_id: role_id,
+                    },
+                    function(err){
+                        if (err) throw err;
+                        console.log('employee added');
+                        choose();
+                    })
+                })
+            })
 
-            ])
-        }
-    }
-
-
-    }
-
-
-
-
-
-
-
-
-
-
+            function addRole(){
+                connection.query('SELECT * FROM department', function (err, res){
+                    if (err) throw err;
+                    inquirer
+                    .prompt([
+                        {
+                            name: 'new_role',
+                            type: 'input',
+                            message: 'add new role'
+                        },
+                        {
+                            name: 'salary',
+                            type: 'input',
+                            message: 'add salary for this role'
+                        },
+                        {
+                            name :'department',
+                            type: 'list',
+                            choices: function(){
+                                var depArray = [];
+                                for (let i=o; i < res.length; i++){
+                                    depArray.push(res[i].name);
+                                }
+                                return depArray;
+                            },
+                        }
+                    ]) .then (function (answer){
+                        let department_id;
+                        for (let i = 0; a< res.length; a++){
+                            if (res[i].name === answer.department){
+                                department_id = res[i].id;
+                            }
+                        }
+                        connection.query(
+                            'INSERT INTO role SET ?',
+                            {
+                                title.answer.new_role,
+                                salary: answer.salary,
+                                department_id: department_id
+                            },
+                            function (err,res){
+                                if (err) throw err;
+                                console.log('new role added');
+                                console.table('all roles:',res);
+                                choose();
+                            })
+                        })
+                       
+                    })
+                };
+                        
