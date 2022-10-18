@@ -1,5 +1,5 @@
-    DROP DATABASE IF EXISTS employee_db;
-    CREATE DATABASE employee_db;
+    DROP DATABASE IF EXISTS employees_db;
+    CREATE DATABASE employees_db;
     USE employee_db;
 --  Creating table for the depatment which includes id and name
     CREATE TABLE department (
