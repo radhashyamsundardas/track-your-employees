@@ -92,7 +92,56 @@ function choose(){
             choose();
         })
     };
-    function
+    function viewRole (){
+        var query = 'SELECT * FROM role';
+        connection.query(query, function (err,res){
+            if (err) throw err;
+            console.table('all roles', res);
+            choose();
+        })
+    };
+
+    function addEmp(){
+        connection.query = 'SELECT * FROM role', function(err,res){
+            if (err) throw err;
+            inquirer
+            .prompt([
+                {
+                    name: 'first_name',
+                    type: 'input',
+                    message: 'please enter employee first name',
+                },
+                {
+                    name: 'last_name',
+                    type: 'input',
+                    message: 'please enter employee last name',
+                },
+                {
+                    name: 'manger_id',
+                    type: 'input',
+                    message: 'please enter employee manager id',
+                },
+                {
+                    name: 'role',
+                    type: 'list',
+                    choices: function(){
+                        const erray =[];
+                        for (var a = 0; a < res.length; a++ ){
+                            if (res[a].title === answer.role){
+                                role_id = res[a].id;
+                                console.log(role_id);
+                            }
+                        }
+                        connection.query{
+                            'INSERT INTO employee SET?',
+                            {}
+                        }
+                    }
+                }
+
+            ])
+        }
+    }
 
 
     }
