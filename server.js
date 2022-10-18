@@ -205,4 +205,28 @@ function choose(){
                        
                     })
                 };
+                function addDept(){
+                    inquirer
+                    .prompt([
+                        {
+                            name:'newDepartment',
+                            type: 'input',
+                            message: 'which department would you like to add?',
+
+                        }
+                    ])
+                    .then(function(answer){
+                        connection.query('INSERT INTO department SET ?',
+                        {
+                            name: answer.newDepartment
+                        });
+                        var query = 'SELECT * FROM department';
+                        connection.query(query, function(err,res){
+                            if (err) throw err;
+                            console.log('department added');
+                            console.table('All Departments:', res);
+                            choose();
+                        })
+                    })
+                };
                         
