@@ -71,7 +71,7 @@ function choose(){
             default:
                 break;
         }
-    })
+    });
     function viewDept (){
         var query = 'SELECT * FROM department';
         connection.query (query,function (err, res){
@@ -153,7 +153,7 @@ function choose(){
                         choose();
                     })
                 })
-            })
+            }
         };
 
             function addRole(){
@@ -231,15 +231,59 @@ function choose(){
                     })
                 };
                 function updateRole(){
-
+                    inquirer
+                    .prompt([
+                        {
+                            name: 'updateRole',
+                            type: 'input',
+                            message: 'please update role',
+                            
+                        }
+                    ])
+                    .then(function(answer){
+                        connection.query('INSERT INTO role SET ?',
+                        {
+                            name:answer.updateRole
+                        });
+                        var query = 'SELECT * FROM department';
+                        connection.query(query, function(err,res){
+                            if (err) throw err;
+                            console.log('role updated');
+                            console.table('All Departments:', res);
+                            choose();
+                        })
+                    })
                 };
 
                 function deleteEmp (){
 
+                    inquirer
+                    .prompt([
+                        {
+                            name: 'deleteEmployee',
+                            type: 'input',
+                            message: 'please select employee you want to delete',
+                            
+                        }
+                    ])
+                    .then(function(answer){
+                        connection.query('INSERT INTO employee SET ?',
+                        {
+                            name:answer.deleteEmp
+                        });
+                        var query = 'SELECT * FROM employee';
+                        connection.query(query, function(err,res){
+                            if (err) throw err;
+                            console.log('employee deleted');
+                            console.table('All Departments:', res);
+                            choose();
+                        })
+                    })
+                };
                 };
 
                 function exit(){
                     connection.end();
                 };
-            
-                        
+
+
