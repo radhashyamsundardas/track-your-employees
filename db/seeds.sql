@@ -13,21 +13,21 @@ VALUES
 
 -- adding titile salary and department id values to role section
 
-INSERT INTO ROLE (department_id, title, salary, )
+INSERT INTO role ( title, salary , department_id)
 values 
-(1 , 'Manager', 150000),
-(2 , 'Accountant' 70000 ),
-(3 , 'Full stack Web Developer' 150000 ),
-(4 , 'Customer Representative', 75000),
-(5 , 'Sales Represntative', 50000),
-(6 , 'Body Gaurd', 90000);
+( 'Manager', 150000, 1 ),
+( 'Accountant' 70000, 2 ),
+( 'Full stack Web Developer' 150000, 3 ),
+( 'Customer Representative', 75000, 4),
+( 'Sales Represntative', 50000, 5),
+('Body Gaurd', 90000, 6);
 
 -- addinfg employee names and and role id 
-INSERT INTO employee (role_id, first_name, last_name,  manager_id)
+INSERT INTO employee ( first_name, last_name, role_id, manager_id)
 VALUES
-(1, 'hiren', 'patel', 123),
-(2, 'neha', 'patel' 456),
-(3, 'alan', 'smith', 789),
-(4, 'roger', 'patmas', 012),
-(5, 'wiki', 'pedia', 345),
-(6, 'fan', 'tastic', 678);
+( 'hiren', 'patel',1, 123),
+( 'neha', 'patel' ,2, 456),
+( 'alan', 'smith',3, 789),
+( 'roger', 'patmas',4, 012),
+('wiki', 'pedia',5,  345),
+( 'fan', 'tastic',6, 678);

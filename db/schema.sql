@@ -1,6 +1,6 @@
     DROP DATABASE IF EXISTS employees_db;
     CREATE DATABASE employees_db;
-    USE employee_db;
+    USE employees_db;
 --  Creating table for the depatment which includes id and name
     CREATE TABLE department (
         id INT PRIMARY KEY AUTO_INCREMENT,
@@ -11,8 +11,8 @@
         id INT PRIMARY KEY AUTO_INCREMENT,
         title VARCHAR(30) NOT NULL,
         salary DECIMAL NOT NULL,
-        department_id INT NOT NULL,
-        PRIMARY KEY (id)
+        department_id INT NOT NULL 
+        
 
     );
     CREATE TABLE employee (
@@ -20,7 +20,7 @@
         first_name VARCHAR(30) NOT NULL,
         last_name VARCHAR(30) NOT NULL,
         role_id INT NOT NULL,
-        manager_id INT NULL,
-        PRIMARY KEY (id)
+        manager_id INT NULL
+        
     );
 
