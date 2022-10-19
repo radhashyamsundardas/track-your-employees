@@ -10,7 +10,7 @@ const { type } = require('os');
 // connecting to sql database.
 const connection = mysql2.createConnection({
     host: 'localhost',
-    port: 3001,
+    port: 3306,
     user:'root',
     password:'',
     database: 'employees_db'
@@ -34,7 +34,7 @@ function choose(){
             'add employee',
             'add role',
             'add department',
-            'update employee',
+            'update employee role',
             'delete employee',
             'EXIT'
 
@@ -59,11 +59,11 @@ function choose(){
             case 'add department':
                 addDept();
                 break
-            case 'update employee':
-                updateEmployee();
+            case 'update role':
+                updateRole();
                 break
             case 'delete employee':
-                deleteEmployee();
+                deleteEmp();
                 break
             case 'EXIT':
                 exit();
@@ -154,6 +154,7 @@ function choose(){
                     })
                 })
             })
+        };
 
             function addRole(){
                 connection.query('SELECT * FROM department', function (err, res){
@@ -205,7 +206,7 @@ function choose(){
                        
                     })
                 };
-                function addDept(){
+                function addDept (){
                     inquirer
                     .prompt([
                         {
@@ -229,4 +230,16 @@ function choose(){
                         })
                     })
                 };
+                function updateRole(){
+
+                };
+
+                function deleteEmp (){
+
+                };
+
+                function exit(){
+                    connection.end();
+                };
+            
                         
