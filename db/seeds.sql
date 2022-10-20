@@ -16,8 +16,8 @@ VALUES
 INSERT INTO role ( title, salary , department_id)
 values 
 ( 'Manager', 150000, 1 ),
-( 'Accountant' 70000, 2 ),
-( 'Full stack Web Developer' 150000, 3 ),
+( 'Accountant' ,70000, 2 ),
+( 'Full stack Web Developer', 150000, 3 ),
 ( 'Customer Representative', 75000, 4),
 ( 'Sales Represntative', 50000, 5),
 ('Body Gaurd', 90000, 6);

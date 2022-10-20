@@ -29,8 +29,8 @@ function choose(){
         message: 'Please select one option out of following optios',
         choices: [
             'view all departments',
-            'view all employees',
             'view all roles',
+            'view all employees',
             'add employee',
             'add role',
             'add department',
@@ -80,20 +80,20 @@ function choose(){
             choose();
         })
     };
+    function viewRole (){
+        var query = 'SELECT * FROM role';
+        connection.query(query, function (err,res){
+            if (err) throw err;
+            console.table('all roles', res);
+            choose();
+        })
+    };
     function viewEmp (){
         var query = 'SELECT * FROM employee';
         connection.query(query, function(err,res){
             if (err)throw err;
             console.log(res.length + 'employees available');
             console.table('all employees:', res);
-            choose();
-        })
-    };
-    function viewRole (){
-        var query = 'SELECT * FROM role';
-        connection.query(query, function (err,res){
-            if (err) throw err;
-            console.table('all roles', res);
             choose();
         })
     };
