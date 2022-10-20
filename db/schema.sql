@@ -11,7 +11,7 @@
         id INT PRIMARY KEY AUTO_INCREMENT,
         title VARCHAR(30) NOT NULL,
         salary DECIMAL NOT NULL,
-        department_id INT NOT NULL FOREIGN KEY
+        department_id INT NOT NULL 
         
         
 
@@ -21,7 +21,7 @@
         first_name VARCHAR(30) NOT NULL,
         last_name VARCHAR(30) NOT NULL,
         role_id INT NOT NULL ,
-        manager_id INT NULL FOREIGN KEY
+        manager_id INT NULL 
         
     );
 

@@ -24,8 +24,8 @@ connection.connect(function(err){
 function choose(){
     inquirer 
     .prompt({
-        name: Action,
-        type: list, 
+        name: 'Action',
+        type: 'list', 
         message: 'Please select one option out of following optios',
         choices: [
             'view all departments',
@@ -192,7 +192,7 @@ function choose(){
                         connection.query(
                             'INSERT INTO role SET ?',
                             {
-                                title.answer.new_role,
+                                title:answer.new_role,
                                 salary: answer.salary,
                                 department_id: department_id
                             },
@@ -282,8 +282,8 @@ function choose(){
                 };
                 };
 
-                function exit(){
-                    connection.end();
-                };
+                // function exit(){
+                //     connection.end();
+                // };
 
 
