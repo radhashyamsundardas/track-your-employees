@@ -124,7 +124,7 @@ function choose(){
                     type: 'list',
                     choices: function(){
                         var erray =[];
-                        for (var a = 0; a < res.length; a++ ){
+                        for (var a = 1; a < res.length; a++ ){
                             erray.push(res[i].title);
                         }
                         return erray;
@@ -133,7 +133,7 @@ function choose(){
                 }
             ]).then (function (answer){
                 let role_id;
-                for (var i = 0; a< res.length; a++){
+                for (var i = 1; a< res.length; a++){
                     if (res[i].title === answer.role){
                         role_id = res[i].id;
                         console.log (role_id)
@@ -176,7 +176,7 @@ function choose(){
                             type: 'list',
                             choices: function(){
                                 var depArray = [];
-                                for (let i=o; i < res.length; i++){
+                                for (let i = 1; i < res.length; i++){
                                     depArray.push(res[i].name);
                                 }
                                 return depArray;
@@ -184,7 +184,7 @@ function choose(){
                         }
                     ]) .then (function (answer){
                         let department_id;
-                        for (let i = 0; a< res.length; a++){
+                        for (let i = 1; i < res.length; i++){
                             if (res[i].name === answer.department){
                                 department_id = res[i].id;
                             }
@@ -269,7 +269,7 @@ function choose(){
                     .then(function(answer){
                         connection.query('INSERT INTO employee SET ?',
                         {
-                            name:answer.deleteEmp
+                            name:answer.deleteEmployee
                         });
                         var query = 'SELECT * FROM employee';
                         connection.query(query, function(err,res){
@@ -285,5 +285,3 @@ function choose(){
                 // function exit(){
                 //     connection.end();
                 // };
-
-
